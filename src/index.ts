@@ -27,7 +27,7 @@ class Hero {
   }
 
   attack(opponent: Hero): void {
-    opponent.life -= this.power;
+    opponent.life -= this.power-this.Weapon.damage;
   }
 
   isAlive(): boolean {
