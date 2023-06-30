@@ -294,7 +294,7 @@ Le mot clé `super` dans la classe fille permet d'appeler le constructor de la c
 
 4- Comment appeler une méthode d'une classe mère ? 
 
-Pour appeler une méthode d'une classe mère depuis une classe fille, il suffit d'utiliser le nom de la classe fille '.' le nom de la méthode.
+Pour appeler une méthode d'une classe mère depuis une classe fille, il suffit d'utiliser le nom de la classe fille '.' le nom de la méthode de la classe mère.
 ```
 class mere {
     maFunction(); //méthode déclarée dans la classe mère

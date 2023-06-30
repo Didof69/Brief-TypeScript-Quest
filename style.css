@@ -1,0 +1,93 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    display: flex;
+    justify-content: center;
+
+}
+
+h1,
+h2,
+h3,
+#fightBtn {
+    font-family: 'MedievalSharp', cursive;
+}
+
+h1, 
+h3{
+color: white;
+}
+
+.container {
+    background-image: url(./images/battlefield.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0 10px 29px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 800px;
+}
+
+.chooseYourHero {
+    display: flex;
+    justify-content: center;
+    align-items:last baseline ;
+}
+
+#choice1,
+#choice2 {
+    background-color: #fefefe;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 10px 29px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: auto;
+    margin: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    line-height: 30px;
+}
+
+option{
+    text-align: center;
+}
+
+.battlefield {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    margin: auto;
+}
+
+#hero1,
+#hero2 {
+    background-color: #fefefe;
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0 10px 29px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 180px;
+    margin: 20px 20px 20px 20px;
+}
+
+#fightBtn{
+    border: none;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#fightBtn:hover{
+    border: solid 5px yellow;
+}
