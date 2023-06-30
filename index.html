@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=MedievalSharp&display=swap" rel="stylesheet">
+    <script src="./dist/index.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -24,7 +25,7 @@
         </div>
 
         <div>
-          <button id="fightBtn">Choose</button>
+          <button id="chooseBtn">Choose</button>
         </div>
 
         <div id="choice2">
@@ -39,17 +40,17 @@
 
       <div class="battlefield">
         <div id="hero1">
-          <h2>Hero 1</h2>
-          <p id="nameHero1"></p>
+          <p>Hero 1</p>
+          <h2 id="nameHero1"></h2>
           <img src="" alt="" id="imgHero1" />
           <p id="weaponH1"></p>
         </div>
 
         <div id="hero2">
-          <h2>Hero 2</h2>
-          <p id="nameHero1"></p>
+          <p>Hero 2</p>
+          <h2 id="nameHero2"></h2>
           <img src="" alt="" id="imgHero2" />
-          <p id="weaponH1"></p>
+          <p id="weaponH2"></p>
         </div>
       </div>
 
@@ -58,14 +59,16 @@
       </div>
 
       <div class="resultat">
-        <div id="nbRound">
-          <h3>Nombre de Round</h3>
-          <p></p>
+
+        <div class="nbRound">
+          <p>Total Round</p>
+          <p id="nbRound"></p>
         </div>
 
-        <div id="winner">
-            <h2>Winner</h2>
+        <div class="winner">
+            <p id="winner">Winner</p>
         </div>
+
       </div>
     </div>
   </body>
