@@ -2,7 +2,7 @@ class Hero {
   private name: string;
   private power: number;
   private life: number;
-  Weapon!: Weapon;
+  weapon!: Weapon;
 
   constructor(name: string, power: number, life: number) {
     this.name = name;
@@ -27,7 +27,9 @@ class Hero {
   }
 
   attack(opponent: Hero): void {
-    opponent.life -= this.power-this.Weapon.damage;
+    if (typeof this.weapon === undefined) {
+      opponent.life -= this.power;
+    }
   }
 
   isAlive(): boolean {
@@ -56,15 +58,16 @@ const sword = new Weapon("Sword", 30);
 class HeroAxe extends Hero {
   constructor(name: string, power: number, life: number) {
     super(name, power, life);
-    this.Weapon = axe;
+    this.weapon = axe;
   }
 
   attack(opponent: Hero): void {
     if (opponent instanceof HeroSword) {
-      opponent.setLife(opponent.getLife() - (this.getPower() * 2 + this.Weapon.damage)
+      opponent.setLife(opponent.getLife() - (this.getPower() * 2 + this.weapon.damage)
       );
     } else {
-      opponent.setLife(opponent.getLife() - (this.getPower() + this.Weapon.damage)
+      opponent.setLife(
+        opponent.getLife() - (this.getPower() * 2 + this.weapon.damage)
       );
     }
   }
@@ -73,14 +76,16 @@ class HeroAxe extends Hero {
 class HeroSpear extends Hero {
   constructor(name: string, power: number, life: number) {
     super(name, power, life);
-    this.Weapon = spear;
+    this.weapon = spear;
   }
 
     attack(opponent: Hero): void {
     if (opponent instanceof HeroAxe) {
-      opponent.setLife( opponent.getLife() - (this.getPower() * 2 + this.Weapon.damage));
+      opponent.setLife( opponent.getLife() - (this.getPower() * 2 + this.weapon.damage));
     } else {
-      opponent.setLife(opponent.getLife() - (this.getPower() + this.Weapon.damage));
+      opponent.setLife(
+        opponent.getLife() - (this.getPower()+ this.weapon.damage)
+      );
     }
   }
   }
@@ -88,19 +93,21 @@ class HeroSpear extends Hero {
 class HeroSword extends Hero {
   constructor(name: string, power: number, life: number) {
     super(name, power, life);
-    this.Weapon = sword;
+    this.weapon = sword;
   }
 
   attack(opponent: Hero): void {
     if (opponent instanceof HeroSpear) {
-      opponent.setLife(opponent.getLife() - (this.getPower() * 2 + this.Weapon.damage));
+      opponent.setLife(opponent.getLife() - (this.getPower() * 2 + this.weapon.damage));
     } else {
-      opponent.setLife(opponent.getLife() - (this.getPower()+ this.Weapon.damage));
+      opponent.setLife(
+        opponent.getLife() - (this.getPower() * 2 + this.weapon.damage)
+      );
     }
   }
 }
 
-// let joan = new Hero("Joan", 60, 100);
+let joan = new Hero("Joan", 60, 100);
 // let leon = new Hero("Leon", 20, 100);
 // console.log(joan);
 // console.log(leon);
@@ -125,7 +132,7 @@ const jean = new HeroAxe("Jean", 20, 300);
 // console.log(pierre.getLife());
 
 let heros1: Hero = pierre;
-let heros2: Hero = jean;
+let heros2: Hero = joan;
 console.log(heros1.getName() + " attacks " + heros2.getName());
 console.log(jean);
 console.log(paul);
