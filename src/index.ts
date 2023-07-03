@@ -206,7 +206,7 @@ chooseBtn.addEventListener("click", () => {
 });
 
 fightBtn.addEventListener("click", () => {
-  if (!debutPartie) {
+  if (!debutPartie || heros1.getLife() <= 0 || heros2.getLife() <= 0) {
     winner.style.color = "red";
     winner.innerText = `Choose Heroes before !`;
   } else {
