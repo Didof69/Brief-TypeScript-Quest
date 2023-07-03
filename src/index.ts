@@ -140,6 +140,7 @@ let hero2 = document.getElementById("hero2Choice") as HTMLSelectElement;
 let heros1: Hero;
 let heros2: Hero;
 let debutPartie: boolean = false;
+
 // PARAMETRAGE DES HEROS //
 function chooseHero(): void {
   if (hero1.value == "heroAxe") {
@@ -149,6 +150,7 @@ function chooseHero(): void {
   } else {
     heros1 = pierre;
   }
+
   if (hero2.value == "heroAxe") {
     heros2 = jean;
   } else if (hero2.value == "heroSpear") {
@@ -156,11 +158,7 @@ function chooseHero(): void {
   } else {
     heros2 = pierre;
   }
-}
 
-chooseBtn.addEventListener("click", () => {
-  chooseHero();
-  debutPartie = true;
   if (hero1.value == "heroAxe") {
     imgHero1.src = "./images/axe.jpg";
     nameHero1.innerHTML = `${jean.getName()}`;
@@ -174,6 +172,7 @@ chooseBtn.addEventListener("click", () => {
     nameHero1.innerHTML = `${pierre.getName()}`;
     weaponH1.innerText = `got a ${pierre.weapon.name}`;
   }
+
   if (hero2.value == "heroAxe") {
     imgHero2.src = "./images/axe.jpg";
     nameHero2.innerHTML = `${jean.getName()}`;
@@ -187,30 +186,32 @@ chooseBtn.addEventListener("click", () => {
     nameHero2.innerHTML = `${pierre.getName()}`;
     weaponH2.innerText = `got a ${pierre.weapon.name}`;
   }
+}
+
+chooseBtn.addEventListener("click", () => {
+  chooseHero();
+
+  if (heros1 == heros2) {
+    winner.style.color = "red";
+    winner.innerText = `${heros1.getName()} can't fight himself !`;
+  } else {
+    debutPartie = true;
+
+    heros1.setLife(300);
+    heros2.setLife(300);
+
+    console.log(heros1.getLife());
+    console.log(heros2.getLife());
+  }
 });
 
 fightBtn.addEventListener("click", () => {
-  chooseHero();
-
   if (!debutPartie) {
+    winner.style.color = "red";
     winner.innerText = `Choose Heroes before !`;
   } else {
-
-    if (hero1.value == "heroAxe") {
-      heros1 = jean;
-    } else if (hero1.value == "heroSpear") {
-      heros1 = paul;
-    } else {
-      heros1 = pierre;
-    }
-    if (hero2.value == "heroAxe") {
-      heros2 = jean;
-    } else if (hero2.value == "heroSpear") {
-      heros2 = paul;
-    } else {
-      heros2 = pierre;
-    }
-
+    chooseHero();
+    winner.style.color = "black";
     // BOUCLE DU JEU //
     let numberOfRound: number = 0;
     let result: string = "";
