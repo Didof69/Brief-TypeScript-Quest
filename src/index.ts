@@ -30,7 +30,7 @@ class Hero {
 
   attack(opponent: Hero): void {
     if (this.weapon) {
-      opponent.life -= (this.power + this.weapon.damage);
+      opponent.life -= this.power + this.weapon.damage;
     } else {
       opponent.life -= this.power;
     }
@@ -109,19 +109,8 @@ class HeroSword extends Hero {
 }
 
 const pierre = new HeroSword("Pierre", 25, 300);
-// console.log(pierre);
 const paul = new HeroSpear("Paul", 15, 300);
-// console.log(paul);
 const jean = new HeroAxe("Jean", 20, 300);
-// console.log(jean);
-
-// let heros1: Hero = pierre;
-// let heros2: Hero = jean;
-// console.log(heros1.getName() + " attacks " + heros2.getName());
-// console.log(jean);
-// console.log(paul);
-// console.log("la vie du héros 1 " + heros1.getLife());
-// console.log("la vie du héros 2 " + heros2.getLife());
 
 // INITIALISATION INTERFACE //
 
@@ -140,7 +129,6 @@ let hero2 = document.getElementById("hero2Choice") as HTMLSelectElement;
 let heros1: Hero;
 let heros2: Hero;
 let debutPartie: boolean = false;
-
 
 // PARAMETRAGE DES HEROS //
 function chooseHero(): void {
@@ -189,13 +177,6 @@ function chooseHero(): void {
   }
 }
 
-// AFFICHAGE DES ROUNDS//
-// function fightActu(): void {
-//   nbRound.innerText = `${numberOfRound}`;
-
-//   winner.innerText = `${heros1.getName()} life : ${heros1.getLife()} - ${heros2.getName()} life : ${heros2.getLife()}`;
-// }
-
 chooseBtn.addEventListener("click", () => {
   chooseHero();
 
@@ -207,9 +188,6 @@ chooseBtn.addEventListener("click", () => {
 
     heros1.setLife(300);
     heros2.setLife(300);
-
-    console.log(heros1.getLife());
-    console.log(heros2.getLife());
   }
 });
 
@@ -220,8 +198,9 @@ fightBtn.addEventListener("click", () => {
   } else {
     chooseHero();
     winner.style.color = "black";
+
     // BOUCLE DU JEU //
-    let result: string = ""; 
+    let result: string = "";
     let numberOfRound: number = 0;
     while (heros1.isAlive() && heros2.isAlive()) {
       heros1.attack(heros2);
@@ -229,7 +208,6 @@ fightBtn.addEventListener("click", () => {
 
       numberOfRound++;
 
-      // setInterval(fightActu, 3000);
       console.log(`la vie du héros 1 : ${heros1.getLife()}`);
       console.log(`la vie du héros 2 : ${heros2.getLife()}`);
 
@@ -246,3 +224,6 @@ fightBtn.addEventListener("click", () => {
     winner.innerText = `${result}`;
   }
 });
+
+      // nbRound.innerText = `${numberOfRound}`;
+      // winner.innerText = `${heros1.getName()} life : ${heros1.getLife()} - ${heros2.getName()} life : ${heros2.getLife()}`;
