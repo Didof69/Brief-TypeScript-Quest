@@ -173,15 +173,19 @@ fightBtn.addEventListener("click", () => {
     else {
         chooseHero();
         winner.style.color = "black";
-        // BOUCLE DU JEU //
         let result = "";
         let numberOfRound = 0;
+        let recapRound = [];
+        // BOUCLE DU JEU //
         while (heros1.isAlive() && heros2.isAlive()) {
             heros1.attack(heros2);
             heros2.attack(heros1);
             numberOfRound++;
-            console.log(`la vie du héros 1 : ${heros1.getLife()}`);
-            console.log(`la vie du héros 2 : ${heros2.getLife()}`);
+            recapRound.push({
+                round: numberOfRound,
+                lifeH1: heros1.getLife(),
+                lifeH2: heros2.getLife(),
+            });
             if (heros1.getLife() <= 0 && heros2.getLife() <= 0) {
                 result = `It's a draw !`;
             }
@@ -192,9 +196,17 @@ fightBtn.addEventListener("click", () => {
                 result = `Hero ${heros1.getName()} wins !`;
             }
         }
+        for (let i = 0; i < recapRound.length; i++) {
+            nbRound.innerText = `${numberOfRound}`;
+            winner.innerText = `${heros1.getName()} : rest life ${recapRound[i].lifeH1} - ${heros2.getName()} rest life : ${recapRound[i].lifeH2}`;
+            console.log(`Round ${recapRound[i].round}: ${heros1.getName()} rest life ${recapRound[i].lifeH1} - ${heros2.getName()} rest life ${recapRound[i].lifeH2}`);
+        }
+        recapRound.forEach(round => {
+            nbRound.innerText = `${round.round}`;
+            winner.innerText = `${heros1.getName()} : rest life ${round.lifeH1} - ${heros2.getName()} rest life : ${round.lifeH2}`;
+            console.log(`Round ${round.round}: ${heros1.getName()} rest life ${round.lifeH1} - ${heros2.getName()} rest life ${round.lifeH2}`);
+        });
         nbRound.innerText = `${numberOfRound}`;
         winner.innerText = `${result}`;
     }
 });
-// nbRound.innerText = `${numberOfRound}`;
-// winner.innerText = `${heros1.getName()} life : ${heros1.getLife()} - ${heros2.getName()} life : ${heros2.getLife()}`;
