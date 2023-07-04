@@ -113,8 +113,10 @@ option {
     margin-right: 20px;
 }
 
+#chooseBtn:hover,
 #fightBtn:hover {
-    border: solid 2px yellow;
+    background-color: yellow;
+    color: black;
 }
 
 .resultat {
