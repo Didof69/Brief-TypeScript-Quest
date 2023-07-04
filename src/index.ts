@@ -255,5 +255,3 @@ fightBtn.addEventListener("click", () => {
     winner.innerText = `${result}`;
   }
 });
-
-fun
