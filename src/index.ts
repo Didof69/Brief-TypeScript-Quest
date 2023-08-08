@@ -1,112 +1,9 @@
-//  INITIALISATION HERO //
+import { Hero } from "./hero";
+import { HeroSpear } from "./heroSpear";
+import { HeroSword } from "./heroSword";
+import { HeroAxe } from "./heroAxe";
 
-class Hero {
-  private name: string;
-  private power: number;
-  private life: number;
-  weapon!: Weapon;
-
-  constructor(name: string, power: number, life: number) {
-    this.name = name;
-    this.power = power;
-    this.life = life;
-  }
-
-  getName(): string {
-    return this.name;
-  }
-
-  getLife(): number {
-    return this.life;
-  }
-
-  setLife(newLife: number): void {
-    this.life = newLife;
-  }
-
-  getPower(): number {
-    return this.power;
-  }
-
-  attack(opponent: Hero): void {
-    if (this.weapon) {
-      opponent.life -= this.power + this.weapon.damage;
-    } else {
-      opponent.life -= this.power;
-    }
-  }
-
-  isAlive(): boolean {
-    return this.life > 0;
-  }
-}
-
-// INITIALISATION ARME //
-class Weapon {
-  name: string;
-  damage: number;
-
-  constructor(name: string, damage: number) {
-    this.name = name;
-    this.damage = damage;
-  }
-}
-
-const axe = new Weapon("Axe", 20);
-const spear = new Weapon("Spear", 50);
-const sword = new Weapon("Sword", 30);
-
-// INITIALISATION SOUS CLASSE HERO
-class HeroAxe extends Hero {
-  constructor(name: string, power: number, life: number) {
-    super(name, power, life);
-    this.weapon = axe;
-  }
-
-  attack(opponent: Hero): void {
-    if (opponent instanceof HeroSword) {
-      opponent.setLife(
-        opponent.getLife() - (this.getPower() * 2 + this.weapon.damage)
-      );
-    } else {
-      super.attack(opponent);
-    }
-  }
-}
-
-class HeroSpear extends Hero {
-  constructor(name: string, power: number, life: number) {
-    super(name, power, life);
-    this.weapon = spear;
-  }
-
-  attack(opponent: Hero): void {
-    if (opponent instanceof HeroAxe) {
-      opponent.setLife(
-        opponent.getLife() - (this.getPower() * 2 + this.weapon.damage)
-      );
-    } else {
-      super.attack(opponent);
-    }
-  }
-}
-
-class HeroSword extends Hero {
-  constructor(name: string, power: number, life: number) {
-    super(name, power, life);
-    this.weapon = sword;
-  }
-
-  attack(opponent: Hero): void {
-    if (opponent instanceof HeroSpear) {
-      opponent.setLife(
-        opponent.getLife() - (this.getPower() * 2 + this.weapon.damage)
-      );
-    } else {
-      super.attack(opponent);
-    }
-  }
-}
+// INITIALISATION DES HEROS //
 
 const pierre = new HeroSword("Pierre", 25, 300);
 const paul = new HeroSpear("Paul", 15, 300);
@@ -226,29 +123,29 @@ fightBtn.addEventListener("click", () => {
       }
     }
 
-      for (let i = 0; i < recapRound.length; i++) {
-        nbRound.innerText = `${numberOfRound}`;
-        winner.innerText = `${heros1.getName()} : rest life ${
+    for (let i = 0; i < recapRound.length; i++) {
+      nbRound.innerText = `${numberOfRound}`;
+      winner.innerText = `${heros1.getName()} : rest life ${
+        recapRound[i].lifeH1
+      } - ${heros2.getName()} rest life : ${recapRound[i].lifeH2}`;
+
+      console.log(
+        `Round ${recapRound[i].round}: ${heros1.getName()} rest life ${
           recapRound[i].lifeH1
-        } - ${heros2.getName()} rest life : ${recapRound[i].lifeH2}`;
+        } - ${heros2.getName()} rest life ${recapRound[i].lifeH2}`
+      );
+    }
 
-        console.log(
-          `Round ${recapRound[i].round}: ${heros1.getName()} rest life ${
-            recapRound[i].lifeH1
-          } - ${heros2.getName()} rest life ${recapRound[i].lifeH2}`
-        );
-      }
-
-    recapRound.forEach(round => {
+    recapRound.forEach((round) => {
       nbRound.innerText = `${round.round}`;
       winner.innerText = `${heros1.getName()} : rest life ${
         round.lifeH1
-        } - ${heros2.getName()} rest life : ${round.lifeH2}`;
-       console.log(
-          `Round ${round.round}: ${heros1.getName()} rest life ${
-            round.lifeH1
-          } - ${heros2.getName()} rest life ${round.lifeH2}`
-        );
+      } - ${heros2.getName()} rest life : ${round.lifeH2}`;
+      console.log(
+        `Round ${round.round}: ${heros1.getName()} rest life ${
+          round.lifeH1
+        } - ${heros2.getName()} rest life ${round.lifeH2}`
+      );
     });
 
     nbRound.innerText = `${numberOfRound}`;
